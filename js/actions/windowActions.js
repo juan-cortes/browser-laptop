@@ -1074,6 +1074,18 @@ const windowActions = {
     })
   },
 
+  onNativeNotificationOpen: function (windowId, title, options) {
+    console.log('\n!!! windowActions.onNativeNotificationOpen:' + JSON.stringify({ windowId, title, options }, null, 2) + '\n')
+    dispatch({
+      actionType: windowConstants.WINDOW_ON_NATIVE_NOTIFICATION_OPEN,
+      title,
+      options,
+      queryInfo: {
+        windowId
+      }
+    })
+  },
+
   onSiteDetailMenu: function (bookmarkKey, type) {
     dispatch({
       actionType: windowConstants.WINDOW_ON_SITE_DETAIL_MENU,

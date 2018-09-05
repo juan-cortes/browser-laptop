@@ -1891,6 +1891,7 @@ const appActions = {
   },
 
   nativeNotificationCreate: function (windowId, options) {
+    console.log('\n!!! appActions.nativeNotificationCreate:' + JSON.stringify({ windowId, options }, null, 2) + '\n')
     dispatch({
       actionType: appConstants.APP_NATIVE_NOTIFICATION_CREATE,
       options,
@@ -2083,6 +2084,7 @@ const appActions = {
   },
 
   onNativeNotificationClick: function (data) {
+    console.log('\n!!! appActions.nativeNotificationClick:' + JSON.stringify({ data }, null, 2) + '\n')
     dispatch({
       actionType: appConstants.APP_ON_NATIVE_NOTIFICATION_CLICK,
       data
