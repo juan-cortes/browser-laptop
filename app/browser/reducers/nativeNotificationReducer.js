@@ -5,7 +5,6 @@
 'use strict'
 
 const notifier = require('brave-ads-notifier')
-const os = require('os')
 
 // Actions
 const appActions = require('../../../js/actions/appActions')
@@ -23,63 +22,6 @@ const Immutable = require('immutable')
 const {makeImmutable} = require('../../common/state/immutableUtil')
 const notificationUtil = require('../../renderer/lib/notificationUtil')
 const userModel = require('../api/userModel')
-
-const type = os.type()
-const html5P = ('Windows_NT' || type) === 'Windows_NT'
-
-const html5NotificationReducer = (state, action, immutableAction) => {
-  action = immutableAction || makeImmutable(action)
-
-  switch (action.get('actionType')) {
-    case appConstants.APP_NATIVE_NOTIFICATION_CREATE:
-      {
-/* FIXME
-        windowActions.onNativeNotificationOpen(
-          windowId,
-          `Brave Ad: ${immediateWinner}`,
-          {
-            body: notificationText,
-            data: {
-              notificationUrl,
-              notificationId: notificationTypes.ADS
-            }
-          }
-        )
- */
-        break
-      }
-
-    case appConstants.APP_ON_NATIVE_NOTIFICATION_CLICK:
-      {
-/* FIXME
-        switch (data.get('notificationId')) {
-          case notificationTypes.ADS:
-            {
-              // TODO what we want to open, for now we just open ad url
-              tabs.maybeCreateTab(state, Immutable.fromJS({
-                url: data.get('notificationUrl'),
-                windowId: action.get('senderWindowId')
-              }))
-              break
-            }
-        }
- */
-        break
-      }
-
-    case appConstants.APP_ON_NATIVE_NOTIFICATION_CHECK:
-    case appConstants.APP_ON_NATIVE_NOTIFICATION_CONFIGURATION_CHECK:
-    case appConstants.APP_ON_NATIVE_NOTIFICATION_CONFIGURATION_REPORT:
-    case appConstants.APP_ON_NATIVE_NOTIFICATION_ALLOWED_CHECK:
-    case appConstants.APP_ON_NATIVE_NOTIFICATION_ALLOWED_REPORT:
-      {
-/* FIXME
- */
-        break
-      }
-  }
-  return state
-}
 
 const externalNotificationReducer = (state, action, immutableAction) => {
   action = immutableAction || makeImmutable(action)
@@ -150,7 +92,4 @@ const externalNotificationReducer = (state, action, immutableAction) => {
   return state
 }
 
-module.exports = (state, action, immutableAction) => {
-  return (html5P ? html5NotificationReducer(state, action, immutableAction)
-                 : externalNotificationReducer(state, action, immutableAction))
-}
+module.exports = externalNotificationReducer
